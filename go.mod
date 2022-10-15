@@ -1,4 +1,4 @@
-module github.com/mbode/terragrunt-state-mover
+module github.com/BredoGen/terragrunt-state-mover
 
 go 1.17
 
