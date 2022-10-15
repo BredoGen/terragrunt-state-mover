@@ -18,7 +18,7 @@ resource "null_resource" "second" {}`
 	}
 
 	if err := terraformExec(config{}, true, []string{}, "init"); err != nil {
-		t.Fatalf("terraform init failed with %s\n", err)
+		t.Fatalf("terragrunt init failed with %s\n", err)
 	}
 
 	want := []ResChange{

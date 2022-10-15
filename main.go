@@ -1,10 +1,9 @@
-// Terraform-state-mover helps refactoring terraform code by offering an interactive prompt for the `terraform state mv` command.
+// terragrunt-state-mover helps refactoring terragrunt code by offering an interactive prompt for the `terragrunt state mv` command.
 package main
 
 import (
 	"fmt"
 	"github.com/manifoldco/promptui"
-	"github.com/urfave/cli/v2"
 	"log"
 	"os"
 	"reflect"
@@ -30,19 +29,19 @@ func main() {
 	}
 
 	app := &cli.App{
-		Name:    "terraform-state-mover",
-		Usage:   "refactoring Terraform code has never been easier",
+		Name:    "terragrunt-state-mover",
+		Usage:   "refactoring terragrunt code has never been easier",
 		Authors: []*cli.Author{{Name: "Maximilian Bode", Email: "maxbode@gmail.com"}},
 		Action:  action,
 		Flags: []cli.Flag{
 			&cli.DurationFlag{
 				Name: "delay", Aliases: []string{"d"},
-				Usage: "Delay between terraform state mv calls. Helps to avoid rate-limits.",
+				Usage: "Delay between terragrunt state mv calls. Helps to avoid rate-limits.",
 				Value: time.Second * 0,
 			},
 			&cli.BoolFlag{
 				Name: "verbose", Aliases: []string{"v"},
-				Usage: "Be more verbose - prints e.g. terraform mv calls",
+				Usage: "Be more verbose - prints e.g. terragrunt mv calls",
 				Value: false,
 			},
 			&cli.BoolFlag{
@@ -51,7 +50,7 @@ func main() {
 				Value: false,
 			},
 		},
-		UsageText: "terraform-state-mover [-v] [-d delay] [-n] [-- <terraform args>]",
+		UsageText: "terragrunt-state-mover [-v] [-d delay] [-n] [-- <terragrunt args>]",
 		Version:   version,
 	}
 	if err := app.Run(os.Args); err != nil {
@@ -82,7 +81,7 @@ func action(ctx *cli.Context) error {
 			if err == promptui.ErrInterrupt && len(moves) > 0 {
 				fmt.Println("Interrupted. These moves would have been executed based on your selections:")
 				for src, dest := range moves {
-					fmt.Printf("  terraform state mv '%s' '%s'\n", src.Address, dest.Address)
+					fmt.Printf("  terragrunt state mv '%s' '%s'\n", src.Address, dest.Address)
 				}
 			}
 			return err

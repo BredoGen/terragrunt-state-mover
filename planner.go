@@ -28,7 +28,7 @@ func changes(cfg config, planArgs []string) ([]ResChange, error) {
 		return nil, err
 	}
 	if isPre012 {
-		cmd := exec.Command("terraform", "show", "-no-color", tfPlanName)
+		cmd := exec.Command("terragrunt", "show", "-no-color", tfPlanName)
 		var stdout bytes.Buffer
 		cmd.Stdout = &stdout
 		cmd.Stderr = os.Stderr
@@ -49,7 +49,7 @@ func changes(cfg config, planArgs []string) ([]ResChange, error) {
 		}
 		return changes, nil
 	}
-	cmd := exec.Command("terraform", "show", "-json", tfPlanName)
+	cmd := exec.Command("terragrunt", "show", "-json", tfPlanName)
 	var stdout bytes.Buffer
 	cmd.Stdout = &stdout
 	cmd.Stderr = os.Stderr

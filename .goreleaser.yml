@@ -27,4 +27,4 @@ brews:
     description: "Refactoring Terraform code has never been easier"
     folder: Formula
     test: |
-      system "#{bin}/terraform-state-mover", "--version"
+      system "#{bin}/terragrunt-state-mover", "--version"

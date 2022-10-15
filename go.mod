@@ -1,4 +1,4 @@
-module github.com/mbode/terraform-state-mover
+module github.com/mbode/terragrunt-state-mover
 
 go 1.17
 
